@@ -12,5 +12,6 @@ class BloodReportsInput : AppCompatActivity() {
 
         binding = ActivityBloodReportsInputBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
     }
 }

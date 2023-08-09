@@ -30,10 +30,5 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, UrinalysisInput::class.java )
             startActivity(intent)
         }
-        binding.viewPatientsButton.setOnClickListener {
-            val intent = Intent(this, ViewPatients::class.java )
-            startActivity(intent)
-        }
-
     }
 }

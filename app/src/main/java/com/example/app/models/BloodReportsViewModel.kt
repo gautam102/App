@@ -16,13 +16,6 @@ class BloodReportsViewModel : ViewModel() {
 
     init {
         // Simulate fetching data and updating the LiveData
-        val bloodReport = listOf(
-            BloodReport.CBCReport(CBCParams(5.5, 6900, 13.8, 42.0, 87.5, 300000)),
-            BloodReport.CMPReport(CMPParams()),
-            BloodReport.LipidReport(LipidParams()),
-            BloodReport.ThyroidReport(ThyroidParams())
-        )
 
-        _bloodReportsLiveData.value = bloodReport
     }
 }
