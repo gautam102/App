@@ -1,7 +1,4 @@
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.app.models.BloodReport
 import com.example.app.models.CBCParams
 import com.example.app.models.CMPParams
 import com.example.app.models.LipidParams
