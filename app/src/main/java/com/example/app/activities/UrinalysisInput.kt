@@ -3,6 +3,7 @@ package com.example.app.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.app.databinding.ActivityUrinalysisInputBinding
+import com.example.app.utils.addWatcher
 
 class UrinalysisInput : AppCompatActivity() {
     private lateinit var binding: ActivityUrinalysisInputBinding

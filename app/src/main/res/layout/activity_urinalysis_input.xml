@@ -39,7 +39,8 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:id="@+id/pH"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <AutoCompleteTextView
@@ -67,7 +68,8 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:id="@+id/specificGravity"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <AutoCompleteTextView
@@ -88,11 +90,6 @@
                 android:text="Glucose"
                 android:layout_weight="2"/>
 
-
-            <AutoCompleteTextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="6"/>
 
        </LinearLayout>
         <LinearLayout

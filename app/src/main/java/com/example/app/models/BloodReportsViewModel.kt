@@ -10,7 +10,7 @@ class BloodReportsViewModel : ViewModel() {
     RBC	4.7 to 6.1 million cells/mcL	4.2 to 5.4 million cells/mcL
     WBC	4,500 to 10,000 cells/mcL
     Hb	13.8 to 17.2 gm/dL	12.1 to 15.1 gm/dL
-    Hemocrit	40.7% to 50.3%	36.1% to 44.3%
+    Hemaocrit	40.7% to 50.3%	36.1% to 44.3%
     MCV	80 to 95 femtoliter
     Platelet	150,000 to 450,000/dL
 

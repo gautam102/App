@@ -25,7 +25,7 @@ tiredness
 joint pain
 back pain
 cold hands and feet
-pale muscous membranes
+pale mucous membranes
 Urinating a lot
 Thirst
 Losing weight

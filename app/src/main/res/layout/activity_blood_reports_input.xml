@@ -463,7 +463,7 @@
       <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="Lipid Profile Prameters" />
+          android:text="Lipid Profile Parameters" />
 
       <LinearLayout
           android:layout_width="match_parent"
@@ -474,7 +474,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total Cholestrol" />
+            android:text="Total Cholesterol" />
 
         <EditText
             android:id="@+id/TotChl"
