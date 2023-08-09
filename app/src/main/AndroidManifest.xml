@@ -29,9 +29,6 @@
             android:name=".activities.VitalInput"
             android:exported="false" />
         <activity
-            android:name=".PatientForm"
-            android:exported="false" />
-        <activity
             android:name=".activities.MainActivity"
             android:exported="true" >
             <intent-filter>

@@ -10,7 +10,7 @@ import com.example.app.adapters.SymptomAdapter
 
 class SymptomsInput : AppCompatActivity() {
    private lateinit var binding: ActivitySymptomsInputBinding
-   private lateinit var viewModel: SymptomsViewModel
+    private lateinit var viewModel: SymptomsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
