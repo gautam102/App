@@ -1,18 +1,10 @@
 package com.example.app.activities
-// 1
-import BloodReportsViewModel
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.example.app.databinding.ActivityBloodReportsInputBinding
-// 2
-import android.text.Editable
-import android.text.TextWatcher
-import android.widget.EditText
-import com.example.app.utils.RangeTextWatcher
 import com.example.app.utils.addWatcher
 
-// 3
 class BloodReportsInput : AppCompatActivity() {
    private lateinit var binding: ActivityBloodReportsInputBinding
 
@@ -21,13 +13,6 @@ class BloodReportsInput : AppCompatActivity() {
 
         binding = ActivityBloodReportsInputBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val bloodReportsViewModel = ViewModelProvider(this)[BloodReportsViewModel::class.java]
-
-        // CBC Report Text Watchers
-        for (i in 1..20){
-
-        }
 
         // CBC Report Text Watchers
         addWatcher(binding.RBC, 1.0, 2.00)
@@ -70,6 +55,5 @@ class BloodReportsInput : AppCompatActivity() {
     }
 
 }
-
 
 

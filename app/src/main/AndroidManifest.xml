@@ -26,9 +26,6 @@
             android:label="@string/title_activity_symptoms_input"
             android:theme="@style/Theme.App" />
         <activity
-            android:name=".activities.ViewPatients"
-            android:exported="false" />
-        <activity
             android:name=".activities.VitalInput"
             android:exported="false" />
         <activity

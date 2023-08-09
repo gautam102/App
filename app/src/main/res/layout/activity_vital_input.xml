@@ -42,7 +42,8 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:id="@+id/weight"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <AutoCompleteTextView
@@ -70,7 +71,8 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:id="@+id/height"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <AutoCompleteTextView
@@ -98,7 +100,8 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:id="@+id/age"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <AutoCompleteTextView
@@ -126,7 +129,8 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:id="@+id/bloodPressure"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <AutoCompleteTextView
@@ -154,7 +158,8 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:id="@+id/temperature"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <AutoCompleteTextView
@@ -182,7 +187,8 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:id="@+id/pulseRate"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <AutoCompleteTextView
@@ -210,7 +216,8 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:id="@+id/breathingRate"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <AutoCompleteTextView

@@ -13,5 +13,11 @@ class UrinalysisInput : AppCompatActivity() {
 
         binding = ActivityUrinalysisInputBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        addWatcher(binding.pH, 1.0, 2.00)
+        addWatcher(binding.specificGravity, 1.0, 1.0)
+
+       // watcher for glucose, blood, ketones
     }
 }
