@@ -22,7 +22,7 @@ private val data: List<Any>
         val RBC  = binding.RBC
     }
     inner class CMPViewHolder(private val binding: CmpDataBinding) : RecyclerView.ViewHolder(binding.root) {
-       val Glu = binding.Glucose
+       val Glu = binding.Glu
     }
     inner class ThyroidViewHolder(private val binding: ThyroidDataBinding) : RecyclerView.ViewHolder(binding.root) {
        val TSH = binding.TSH
@@ -69,22 +69,18 @@ private val data: List<Any>
             is CBCViewHolder -> {
                 val cbcViewHolder = holder as CBCViewHolder
                 val info = item as CBCParams
-                cbcViewHolder.RBC.text = info.WBC.toString()
             }
             is CMPViewHolder -> {
                 val cmpViewHolder = holder as CMPViewHolder
                 val info = item as CMPParams
-                cmpViewHolder.Glu.text = info.Glu.toString()
             }
             is ThyroidViewHolder -> {
                 val thyroidViewHolder = holder as ThyroidViewHolder
                 val info = item as ThyroidParams
-                thyroidViewHolder.TSH.text = info.TSH.toString()
             }
             is LipidViewHolder -> {
                 val lipidViewHolder = holder as LipidViewHolder
                 val info = item as LipidParams
-                lipidViewHolder.TotChl.text = info.TotChol.toString()
             }
             else -> throw IllegalArgumentException("Invalid ViewHolder type")
         }

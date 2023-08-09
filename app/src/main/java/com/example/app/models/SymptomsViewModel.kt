@@ -3,7 +3,7 @@ package com.example.app.models
 import androidx.lifecycle.ViewModel
 
 class SymptomsViewModel: ViewModel() {
-    fun generate() : ArrayList<Symptom>{
+    private fun generate() : ArrayList<Symptom>{
         val symptomsString = """
         severe headaches
 chest pain
