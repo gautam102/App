@@ -37,6 +37,23 @@ class RangeTextWatcher(
 
 }
 
+class BinaryTextWatcher(
+    private val editText: EditText,
+    private val type: String?= null,
+) : TextWatcher {
+
+    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun afterTextChanged(s: Editable?) {
+        val input = s.toString()
+    }
+}
 fun addWatcher(ET: EditText, min: Double, max: Double) {
     ET.addTextChangedListener(RangeTextWatcher(ET, min, max))
 }

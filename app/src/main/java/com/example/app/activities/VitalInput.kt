@@ -1,7 +1,13 @@
 package com.example.app.activities
 
+import android.R
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.RadioButton
+import android.widget.Spinner
 import com.example.app.databinding.ActivityVitalInputBinding
 import com.example.app.utils.addWatcher
 
@@ -14,13 +20,32 @@ class VitalInput : AppCompatActivity() {
         binding = ActivityVitalInputBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        addWatcher(binding.weight, 0.0, 500.0)
+        addWatcher(binding.height, 30.0, 300.0)
+        addWatcher(binding.bloodPressure, 60.0, 250.0)
+        addWatcher(binding.temperature, 30.0, 45.0)
+        addWatcher(binding.breathingRate, 10.0, 60.0)
+        addWatcher(binding.pulseRate, 30.0, 200.0)
+        addWatcher(binding.age, 1.0, 110.0)
 
-        addWatcher(binding.weight, 1.0, 1.0)
-        addWatcher(binding.height, 1.0, 1.0)
-        addWatcher(binding.bloodPressure, 1.0, 1.0)
-        addWatcher(binding.temperature, 1.0, 1.0)
-        addWatcher(binding.breathingRate, 1.0, 1.0)
-        addWatcher(binding.pulseRate, 1.0, 1.0)
-        addWatcher(binding.age, 1.0, 1.0)
+
+        fun onRadioButtonClicked(view: View) {
+            if (view is RadioButton) {
+                // Is the button now checked?
+                val checked = view.isChecked
+
+                // Check which radio button was clicked
+                when (view.getId()) {
+                    1 ->
+                        if (checked) {
+                            // Pirates are the best
+                        }
+                    2 ->
+                        if (checked) {
+                            // Ninjas rule
+                        }
+                }
+            }
+        }
     }
 }
