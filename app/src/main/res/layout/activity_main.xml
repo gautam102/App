@@ -19,28 +19,27 @@
 
         <Button
             android:id="@+id/vitalsButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Vitals" />
 
         <Button
             android:id="@+id/symptomsButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Symptoms" />
 
         <Button
             android:id="@+id/bloodReportsButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Blood Reports" />
 
         <Button
             android:id="@+id/urinalysisButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Urinalysis" />
-/>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Spinner
 import com.example.app.databinding.ActivityVitalInputBinding
 import com.example.app.utils.addWatcher
@@ -28,6 +29,19 @@ class VitalInput : AppCompatActivity() {
         addWatcher(binding.pulseRate, 30.0, 200.0)
         addWatcher(binding.age, 1.0, 110.0)
 
+        val radioGrp: RadioGroup = binding.radioGen
 
+        radioGrp.setOnCheckedChangeListener { group, checkId  ->
+            val selected: RadioButton = findViewById(checkId)
+
+            when (selected.id) {
+                binding.radioMale.id -> {
+                    // x
+                }
+                binding.radioFemale.id -> {
+                    // x
+                }
+            }
+        }
     }
 }

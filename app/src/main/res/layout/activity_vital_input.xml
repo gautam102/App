@@ -10,22 +10,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30sp"
+        android:layout_marginRight="30sp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="30sp"
-        android:layout_marginRight="30sp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="20sp"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="20dp"
-            android:text="Vital Parameters" />
+            android:text="Vital Parameters"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,8 +37,8 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Name"
-                android:layout_weight="2"/>
+                android:layout_weight="2"
+                android:text="Name" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="0dp"
@@ -45,14 +46,15 @@
                 android:layout_weight="8">
 
                 <EditText
-                    android:inputType="textPersonName"
-                    android:maxLines="1"
+                    android:id="@+id/Name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/Name"/>
+                    android:inputType="textPersonName"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,8 +65,8 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Age"
-                android:layout_weight="2"/>
+                android:layout_weight="2"
+                android:text="Age" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="0dp"
@@ -72,20 +74,21 @@
                 android:layout_weight="7">
 
                 <EditText
+                    android:id="@+id/age"
                     style="@style/decimalET"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/age"/>
+                    android:layout_height="match_parent" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAlignment="center"
-                android:text="yrs"/>
+                android:text="yrs"
+                android:textAlignment="center" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -102,159 +105,173 @@
 
 
             <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/radioGen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <RadioButton android:id="@+id/radioMale"
+                <RadioButton
+                    android:id="@+id/radioMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Male"
-                    android:onClick="onRadioButtonClicked"/>
-                <RadioButton android:id="@+id/radioFemale"
+                    android:text="Male" />
+
+                <RadioButton
+                    android:id="@+id/radioFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Female"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:text="Female" />
             </RadioGroup>
 
         </LinearLayout>
 
         <RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-            <TextView
-                android:text="Weight"
-                style="@style/fieldTextViewRL"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/textInputRL">
+            <TextView
+                style="@style/fieldTextViewRL"
+                android:text="Weight" />
+
+            <com.google.android.material.textfield.TextInputLayout style="@style/textInputRL">
+
                 <EditText
+                    android:id="@+id/weight"
                     style="@style/decimalET"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/weight"/>
+                    android:layout_height="match_parent" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 style="@style/unitTextViewRL"
-                android:text="kg"/>
+                android:text="kg" />
 
-</RelativeLayout>
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 style="@style/fieldTextViewRL"
                 android:text="Height" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/textInputRL">
+            <com.google.android.material.textfield.TextInputLayout style="@style/textInputRL">
 
                 <EditText
+                    android:id="@+id/height"
                     style="@style/decimalET"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/height"/>
+                    android:layout_height="match_parent" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 style="@style/unitTextViewRL"
-                android:text="cm"/>
-</RelativeLayout>
+                android:text="cm" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <TextView
-               style="@style/fieldTextViewRL"
+            <TextView
+                style="@style/fieldTextViewRL"
                 android:text="Blood\nPressure" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/textInputRL">
+            <com.google.android.material.textfield.TextInputLayout style="@style/textInputRL">
 
                 <EditText
+                    android:id="@+id/bloodPressure"
                     style="@style/decimalET"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/bloodPressure"/>
+                    android:layout_height="match_parent" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 style="@style/unitTextViewRL"
-                android:text="mmHg"/>
-</RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <TextView
-                style="@style/fieldTextViewRL"
-                android:text="Temperature" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/textInputRL">
-
-                <EditText
-                    style="@style/decimalET"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/temperature"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                style="@style/unitTextViewRL"
-                android:text="°C"/>
-</RelativeLayout>
+                android:text="mmHg" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+
             <TextView
                 style="@style/fieldTextViewRL"
-                android:text="Pulse\nRate"/>
+                android:text="Temp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/textInputRL">
+            <com.google.android.material.textfield.TextInputLayout style="@style/textInputRL">
 
                 <EditText
+                    android:id="@+id/temperature"
                     style="@style/decimalET"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/pulseRate"/>
-
+                    android:layout_height="match_parent" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 style="@style/unitTextViewRL"
-                android:text="beats/min"/>
+                android:text="°C" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/fieldTextViewRL"
+                android:text="Pulse\nRate" />
+
+            <com.google.android.material.textfield.TextInputLayout style="@style/textInputRL">
+
+                <EditText
+                    android:id="@+id/pulseRate"
+                    style="@style/decimalET"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                style="@style/unitTextViewRL"
+                android:text="beats/\n   min" />
 
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 style="@style/fieldTextViewRL"
-                android:text="Breathing\nRate"/>
+                android:text="Breathing\nRate" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/textInputRL">
+            <com.google.android.material.textfield.TextInputLayout style="@style/textInputRL">
 
                 <EditText
+                    android:id="@+id/breathingRate"
                     style="@style/decimalET"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/breathingRate"/>
+                    android:layout_height="match_parent" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 style="@style/unitTextViewRL"
-                android:text="breaths/min"/>
+                android:text="breaths/\n    min" />
         </RelativeLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

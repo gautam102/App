@@ -2,6 +2,8 @@ package com.example.app.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import com.example.app.databinding.ActivityUrinalysisInputBinding
 import com.example.app.utils.addWatcher
 
@@ -18,5 +20,21 @@ class UrinalysisInput : AppCompatActivity() {
         addWatcher(binding.pH, 1.0, 14.0)
         addWatcher(binding.specificGravity, 1.001, 1.0035)
 
+        val bldRG: RadioGroup = binding.bldRG
+        val ketRG: RadioGroup = binding.ketRG
+        val gluRG: RadioGroup = binding.gluRG
+
+        bldRG.setOnCheckedChangeListener { group, checkId  ->
+            val selected: RadioButton = findViewById(checkId)
+
+            when (selected.id) {
+                binding.bldPos.id -> {
+                    // x
+                }
+                binding.bldNeg.id -> {
+                    // x
+                }
+            }
+        }
     }
 }
