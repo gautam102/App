@@ -29,23 +29,5 @@ class VitalInput : AppCompatActivity() {
         addWatcher(binding.age, 1.0, 110.0)
 
 
-        fun onRadioButtonClicked(view: View) {
-            if (view is RadioButton) {
-                // Is the button now checked?
-                val checked = view.isChecked
-
-                // Check which radio button was clicked
-                when (view.getId()) {
-                    1 ->
-                        if (checked) {
-                            // Pirates are the best
-                        }
-                    2 ->
-                        if (checked) {
-                            // Ninjas rule
-                        }
-                }
-            }
-        }
     }
 }
