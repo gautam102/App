@@ -13,7 +13,7 @@
         android:layout_marginLeft="30sp"
         android:layout_marginRight="30sp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/submitB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -265,7 +265,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/submitB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"

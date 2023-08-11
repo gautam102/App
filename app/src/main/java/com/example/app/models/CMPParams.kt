@@ -1,18 +1,18 @@
 package com.example.app.models
 
 data class CMPParams(
-    var Glu:Double? = null,
-    var Cal:Double? = null,
-    var Sod:Double? = null,
-    var Pot:Double? = null,
-    var Chl:Double? = null,
-    var Alb:Double? = null,
-    var TotProtein:Double? = null,
-    var ALP:Double? = null,
-    var ALT:Double? = null,
-    var AST:Double? = null,
-    var Bil:Double? = null,
-    var BUN:Double? = null,
-    var Urea:Double? = null,
-    var Creatinine:Double? = null
+    var glu:Double? = null,
+    var cal:Double? = null,
+    var sod:Double? = null,
+    var pot:Double? = null,
+    var chl:Double? = null,
+    var alb:Double? = null,
+    var totProtein:Double? = null,
+    var alp:Double? = null,
+    var alt:Double? = null,
+    var ast:Double? = null,
+    var bil:Double? = null,
+    var bun:Double? = null,
+    var urea:Double? = null,
+    var creatinine:Double? = null
 )

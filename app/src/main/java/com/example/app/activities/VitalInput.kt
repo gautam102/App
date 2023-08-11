@@ -29,19 +29,18 @@ class VitalInput : AppCompatActivity() {
         addWatcher(binding.pulseRate, 30.0, 200.0)
         addWatcher(binding.age, 1.0, 110.0)
 
-        val radioGrp: RadioGroup = binding.radioGen
 
-        radioGrp.setOnCheckedChangeListener { group, checkId  ->
-            val selected: RadioButton = findViewById(checkId)
 
-            when (selected.id) {
-                binding.radioMale.id -> {
-                    // x
-                }
-                binding.radioFemale.id -> {
-                    // x
-                }
+        binding.submitB.setOnClickListener {
+            val radioGrp: RadioGroup = binding.radioGen
+
+            radioGrp.setOnCheckedChangeListener { group, checkId  ->
+                val selected: RadioButton = findViewById(checkId)
+                val sex = selected.text
+
+
             }
         }
+
     }
 }

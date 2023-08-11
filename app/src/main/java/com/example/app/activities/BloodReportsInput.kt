@@ -1,16 +1,11 @@
 package com.example.app.activities
-import BloodReportsViewModel
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.LinearLayout
-import androidx.lifecycle.ViewModelProvider
 import com.example.app.databinding.ActivityBloodReportsInputBinding
-import com.example.app.models.SymptomsViewModel
 import com.example.app.utils.addWatcher
 
 class BloodReportsInput : AppCompatActivity() {
    private lateinit var binding: ActivityBloodReportsInputBinding
-    private lateinit var viewModel: BloodReportsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +13,6 @@ class BloodReportsInput : AppCompatActivity() {
         binding = ActivityBloodReportsInputBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this)[BloodReportsViewModel::class.java]
 
         // CBC Report Text Watchers
         val layout1 = binding.cbcReport
