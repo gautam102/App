@@ -14,7 +14,7 @@ private fun vitalsObesity(bmi: Double, pr: Int): Double{
 
 private fun vitalsHTN(bmi: Double, bp: BP,temp: Double, pr: Int, br: Int, age: Int): Double{
     var res: Double = 0.0
-    val wt: Double = 0.2 // weightage
+    val wt: Double = 0.3 // weightage
 
     //conditions
     if (bmi > 30) { res += wt } //bmi check
@@ -35,7 +35,7 @@ private fun vitalsDiabetes(bmi: Double, pr: Int): Double{
     return res
 }
 
-private fun vitalsThyroidism(bmi: Double, temp: Double, pr: Int) : Double {
+private fun vitalsThyroidism(bmi: Double, temp: Double, pr: Int) : Double{
     var res: Double = 0.0
     val wt: Double = 0.33 //weightage
 

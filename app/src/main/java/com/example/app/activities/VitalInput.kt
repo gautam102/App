@@ -20,7 +20,7 @@ class VitalInput : AppCompatActivity() {
 
         binding = ActivityVitalInputBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        // add text watcher
         addWatcher(binding.weight, 0.0, 500.0)
         addWatcher(binding.height, 30.0, 300.0)
         addWatcher(binding.bloodPressure, 60.0, 250.0)
@@ -28,17 +28,12 @@ class VitalInput : AppCompatActivity() {
         addWatcher(binding.breathingRate, 10.0, 60.0)
         addWatcher(binding.pulseRate, 30.0, 200.0)
         addWatcher(binding.age, 1.0, 110.0)
-
-
-
+        //setup click listener
         binding.submitB.setOnClickListener {
             val radioGrp: RadioGroup = binding.radioGen
-
             radioGrp.setOnCheckedChangeListener { group, checkId  ->
                 val selected: RadioButton = findViewById(checkId)
                 val sex = selected.text
-
-
             }
         }
 

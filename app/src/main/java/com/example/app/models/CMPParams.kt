@@ -1,5 +1,4 @@
 package com.example.app.models
-
 data class CMPParams(
     var glu:Double? = null,
     var cal:Double? = null,

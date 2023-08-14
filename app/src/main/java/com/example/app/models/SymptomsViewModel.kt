@@ -73,24 +73,18 @@ cramps
 stress
  ...
     """.trimIndent()
-
         // Split the string into lines
         val symptomLines = symptomsString.lines()
-
         // Create an ArrayList to hold the Symptom objects
         val symptomList = ArrayList<Symptom>()
-
         // Parse the lines and create Symptom objects
-
         for (line in symptomLines) {
             val symptomName = line.trim() // Remove leading/trailing whitespace
             val symptom = Symptom(symptomName)
             symptomList.add(symptom)
         }
-
         symptomList.sortBy { it.symptom?.toString() }
         return symptomList
    }
    val symptomsList: ArrayList<Symptom> = generate()
-
 }

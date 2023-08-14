@@ -6,14 +6,11 @@ import com.example.app.utils.addWatcher
 
 class BloodReportsInput : AppCompatActivity() {
    private lateinit var binding: ActivityBloodReportsInputBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityBloodReportsInputBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
         // CBC Report Text Watchers
         val layout1 = binding.cbcReport
         addWatcher(layout1.RBC, 1.0, 2.00) //
@@ -22,7 +19,6 @@ class BloodReportsInput : AppCompatActivity() {
         addWatcher(layout1.Hct, 1.0, 2.00) //
         addWatcher(layout1.MCV, 10.0, 500.00)
         addWatcher(layout1.Plt, 1000.0, 1000000.00)
-
         val layout2 = binding.cmpReport
        // CMP Report Text Watchers
         addWatcher(layout2.Glu, 10.0, 1000.00)
@@ -39,7 +35,6 @@ class BloodReportsInput : AppCompatActivity() {
         addWatcher(layout2.BUN, 1.0, 200.0)
         addWatcher(layout2.Urea, 2.0, 500.0)
         addWatcher(layout2.Creatinine, 0.09, 12.0)
-
         // Thyroid Report Text Watchers
         val layout3 = binding.thyroidReport
         addWatcher(layout3.TSH, 0.04, 50.0)
@@ -47,7 +42,6 @@ class BloodReportsInput : AppCompatActivity() {
         addWatcher(layout3.T3, 1.0, 2.00) //
         addWatcher(layout3.FT4, 1.0, 2.00) //
         addWatcher(layout3.FT3, 1.0, 2.00) //
-
         // Lipid Report Text Watchers
         val layout4 = binding.lipidReport
         addWatcher(layout4.TotChl, 15.0, 2000.0)

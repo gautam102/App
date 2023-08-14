@@ -17,10 +17,8 @@ class SymptomsInput : AppCompatActivity() {
 
         binding = ActivitySymptomsInputBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         // Initialization of ViewModel
         viewModel = ViewModelProvider(this)[SymptomsViewModel::class.java]
-
         // Setting up the adapter for displaying symptoms
         val adapter: SymptomAdapter = SymptomAdapter(viewModel.symptomsList)
         binding.symptomsRecyclerView.adapter = adapter

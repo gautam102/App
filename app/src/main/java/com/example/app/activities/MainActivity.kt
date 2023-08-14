@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         binding.vitalsButton.setOnClickListener {
             val intent = Intent(this, VitalInput::class.java )
             startActivity(intent)
