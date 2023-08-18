@@ -154,7 +154,7 @@
                     android:text="positive" />
 
                 <RadioButton
-                    android:id="@+id/KetNeg"
+                    android:id="@+id/ketNeg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="negative" />
