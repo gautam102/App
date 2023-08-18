@@ -17,7 +17,7 @@ class UrinalysisInput : AppCompatActivity() {
         setContentView(binding.root)
         // add text watchers
         addWatcher(binding.pH, 1.0, 14.0)
-        addWatcher(binding.specificGravity, 1.001, 1.0035)
+        addWatcher(binding.specificGravity, 0.750, 1.2000)
         // radiogrps
         val bldRG: RadioGroup = binding.bldRG
         val ketRG: RadioGroup = binding.ketRG

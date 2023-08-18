@@ -18,7 +18,7 @@
     </style>
     <style name="textInputRL">
         <item name="android:layout_centerInParent">true</item>
-        <item name="android:layout_width">190dp</item>
+        <item name="android:layout_width">170dp</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 </resources>

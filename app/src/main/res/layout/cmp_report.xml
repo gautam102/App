@@ -85,7 +85,7 @@
 
         <TextView
             style="@style/fieldTextViewRL"
-            android:text="Potassium" />
+            android:text="Pot" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/textInputRL">
@@ -231,51 +231,6 @@
             style="@style/unitTextViewRL"
             android:text="miU/L" />
     </RelativeLayout>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            style="@style/fieldTextViewRL"
-            android:text="Bilirubin" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/textInputRL">
-            <EditText
-                style="@style/decimalET"
-                android:id="@+id/Bil"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <TextView
-            style="@style/unitTextViewRL"
-            android:text="mg/dL" />
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            style="@style/fieldTextViewRL"
-            android:text="BUN" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/textInputRL">
-            <EditText
-                style="@style/decimalET"
-                android:id="@+id/BUN"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <TextView
-            style="@style/unitTextViewRL"
-            android:text="mg/dL" />
-    </RelativeLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -303,7 +258,7 @@
 
         <TextView
             style="@style/fieldTextViewRL"
-            android:text="Creatinine" />
+            android:text="Cre" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/textInputRL">
@@ -317,90 +272,4 @@
             style="@style/unitTextViewRL"
             android:text="mg/dL" />
     </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            style="@style/fieldTextViewRL"
-            android:text="Tot Chol" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/textInputRL">
-            <EditText
-                style="@style/decimalET"
-                android:id="@+id/TotChl"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <TextView
-            style="@style/unitTextViewRL"
-            android:text="mg/dL" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            style="@style/fieldTextViewRL"
-            android:text="HDL" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/textInputRL">
-            <EditText
-                style="@style/decimalET"
-                android:id="@+id/HDL"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <TextView
-            style="@style/unitTextViewRL"
-            android:text="mg/dL" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            style="@style/fieldTextViewRL"
-            android:text="LDL" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/textInputRL">
-            <EditText
-                style="@style/decimalET"
-                android:id="@+id/LDL"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <TextView
-            style="@style/unitTextViewRL"
-            android:text="ng/dL" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            style="@style/fieldTextViewRL"
-            android:text="Triglycerides" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/textInputRL">
-            <EditText
-                style="@style/decimalET"
-                android:id="@+id/Triglycerides"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <TextView
-            style="@style/unitTextViewRL"
-            android:text="mg/dL" />
-    </RelativeLayout>
-
-
 </LinearLayout>
