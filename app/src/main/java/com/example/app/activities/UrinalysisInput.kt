@@ -77,7 +77,7 @@ class UrinalysisInput : AppCompatActivity() {
 
             val ud = urinalysisDiabetes(glu, ket)
 
-            val res = arrayListOf(0, 0, 0, 0, ud)
+            val res = arrayListOf(0, 0, 0, 0, 0, ud)
             var resJson = gson.toJson(res)
             if (resJson == null) {
                 resJson = ""
