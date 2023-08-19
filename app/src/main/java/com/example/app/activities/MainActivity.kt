@@ -44,10 +44,12 @@ class MainActivity : AppCompatActivity() {
         barChart.xAxis(0).title("Diseases")
         barChart.yAxis(0).title("Probability")
         barChart.yScale().minimum(0.0)  // Set the minimum value
-        barChart.yScale().maximum(1.0)  // Set the maximum value
+        barChart.yScale().maximum(3.0)  // Set the maximum value
         barChart.container("container") // Set the container id
         barChart.labels(true) // Enable labels on columns
         barChart.labels().position("inside") // Set label position
+        barChart.background().fill("000000")
+        binding.chartContainer.setBackgroundColor("")
 
         binding.chartContainer.setChart(barChart)
 
@@ -120,7 +122,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateChartData() {
         // Clear previous data entries and add new data
         dataEntries.clear()
-        val diseases = arrayListOf("Obesity", "Hypertension", "Diabetes", "Hyperthyroidism", "CVD", "Anemia")
+        val diseases = arrayListOf("OBS", "HTN", "DB", "THY", "CVD", "AN")
         for (i in sumArray.indices) {
             dataEntries.add(ValueDataEntry(diseases[i], sumArray[i]))
         }
@@ -128,5 +130,6 @@ class MainActivity : AppCompatActivity() {
         // Remove previous series and add the updated series
         barChart.removeAllSeries()
         barChart.data(dataEntries)
+
     }
 }
