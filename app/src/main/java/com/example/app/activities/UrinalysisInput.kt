@@ -80,11 +80,10 @@ class UrinalysisInput : AppCompatActivity() {
                 ud += urinalysisDiabetes(glu, ket)
             }
 
+
             val res = arrayListOf(0, 0, 0, 0, 0, ud)
             var resJson = gson.toJson(res)
-            if (resJson == null) {
-                resJson = ""
-            }
+
             editor.putString("urinalysisRes", resJson)
             editor.apply()
 

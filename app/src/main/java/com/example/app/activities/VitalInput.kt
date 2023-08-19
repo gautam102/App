@@ -21,9 +21,16 @@ import java.math.MathContext
 import com.google.gson.Gson
 
 class VitalInput : AppCompatActivity() {
-   private lateinit var binding: ActivityVitalInputBinding
+    private lateinit var binding: ActivityVitalInputBinding
     private var bmi: Double = 25.0
-    private var bp: BP = BP(90,120)
+    private var bp: BP = BP(90, 120)
+    private var vo: Double = 0.0
+    private var vt: Double = 0.0
+    private var vhtn: Double = 0.0
+    private var vd: Double = 0.0
+    private var vcvd: Double = 0.0
+    private var va: Double = 0.0
+    private lateinit var res: ArrayList<Double>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -46,11 +53,11 @@ class VitalInput : AppCompatActivity() {
         val sharedPrefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
         val radioGrp: RadioGroup = binding.radioGen
-        radioGrp.setOnCheckedChangeListener { group, checkId  ->
+        radioGrp.setOnCheckedChangeListener { group, checkId ->
             val selected: RadioButton = findViewById(checkId)
             val sex = selected.text.toString()
 
-       }
+        }
 
         binding.submitB.setOnClickListener {
             val editor = sharedPrefs.edit()
@@ -65,58 +72,68 @@ class VitalInput : AppCompatActivity() {
 
 
 
-            if(height!=null && weight!=null){
+            if (height != null && weight != null) {
                 bmi = weight / (height * height)
             }
-            if(bp1!=null && bp2!=null) {
+            if (bp1 != null && bp2 != null) {
                 bp = BP(bp1, bp2)
             }
 
             // input range validation
-            if(height!=null) { if ((height < 30.0) || (height > 300.0)) {
+            if (height != null) {
+                if ((height < 30.0) || (height > 300.0)) {
                     invalidInput()
                 }
             }
-            if (weight!=null){ if((weight < 0.0) || (weight > 500.0)) {
+            if (weight != null) {
+                if ((weight < 0.0) || (weight > 500.0)) {
                     invalidInput()
                 }
             }
-            if (bp1!=null && bp2!=null){ if((bp1 < 60) || (bp1 > 250) || (bp2 < 60) || (bp2 > 250)){
+            if (bp1 != null && bp2 != null) {
+                if ((bp1 < 60) || (bp1 > 250) || (bp2 < 60) || (bp2 > 250)) {
                     invalidInput()
                 }
             }
-            if(pr!=null){ if((pr < 30) || (pr > 200)){
-                   invalidInput()
-                }
-            }
-            if(age!=null){ if((age < 1) || (age > 110)){
+            if (pr != null) {
+                if ((pr < 30) || (pr > 200)) {
                     invalidInput()
                 }
             }
-            if(temp!=null){ if((temp < 30.0) || (temp > 45.0)){
-                invalidInput()
+            if (age != null) {
+                if ((age < 1) || (age > 110)) {
+                    invalidInput()
+                }
             }
+            if (temp != null) {
+                if ((temp < 30.0) || (temp > 45.0)) {
+                    invalidInput()
+                }
             }
 
-            val vo: Double = vitalsObesity(bmi, pr)
-            val vhtn: Double = vitalsHTN(bmi, bp, temp, pr, age)
-            val vt: Double = vitalsThyroidism(bmi, temp, pr)
-            val va: Double = vitalsAnemia(bmi, temp, pr)
-            val vcvd: Double = vitalsCVD(bmi, temp, pr)
-            val vd: Double = vitalsDiabetes(bmi, pr)
 
-            val res = arrayListOf(vo, vhtn, vt, va, vcvd, vd)
+            vo = vitalsObesity(bmi, pr)
+            vhtn = vitalsHTN(bmi, bp, temp, pr, age)
+            vt = vitalsThyroidism(bmi, temp, pr)
+            va = vitalsAnemia(bmi, temp, pr)
+            vcvd = vitalsCVD(bmi, temp, pr)
+            vd = vitalsDiabetes(bmi, pr)
+
+            res = arrayListOf(vo, vhtn, vt, va, vcvd, vd)
 
             var resJson = gson.toJson(res)
-            if(resJson == null) { resJson = "" }
+            if (resJson == null) {
+                resJson = ""
+            }
             editor.putString("vitalRes", resJson)
             editor.apply()
 
             setResult(RESULT_OK, resultIntent)
             finish()
-       }
+        }
     }
-    private fun invalidInput(){
+
+    private fun invalidInput() {
         Toast.makeText(this, "Invalid input range detected", Toast.LENGTH_SHORT).show()
     }
 }

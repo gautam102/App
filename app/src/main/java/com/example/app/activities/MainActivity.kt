@@ -3,6 +3,7 @@ package com.example.app.activities
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,13 +23,34 @@ import com.anychart.enums.Position
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val gson = Gson()
+    private lateinit var barChart: Cartesian
+    private lateinit var sharedPrefs: SharedPreferences
+    private val dataEntries: MutableList<DataEntry> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val barChart: Cartesian = AnyChart.column()
+        sharedPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        // Set the values in shared preferences to null
+        with(sharedPrefs.edit()) {
+            putString("vitalRes", null)
+            putString("symptomsRes", null)
+            putString("bloodReportsRes", null)
+            putString("urinalysisRes", null)
+            apply() // Commit the changes
+        }
+
+        barChart = AnyChart.column()
+        barChart.title("Result")
+        barChart.xAxis(0).title("Diseases")
+        barChart.yAxis(0).title("Probability")
+        barChart.yScale().minimum(0.0)  // Set the minimum value
+        barChart.yScale().maximum(1.0)  // Set the maximum value
+        barChart.container("container") // Set the container id
+        barChart.labels(true) // Enable labels on columns
+        barChart.labels().position("inside") // Set label position
 
         val startInputActivity = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
@@ -55,80 +77,50 @@ class MainActivity : AppCompatActivity() {
 
         val sharedPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
 
-        val vResJson = sharedPrefs.getString("vitalRes", null)
-        val sResJson = sharedPrefs.getString("symptomsRes", null)
-        val bResJson = sharedPrefs.getString("bloodReportsRes", null)
-        val uResJson = sharedPrefs.getString("urinalysisRes", null)
-
-        val resType = object : TypeToken<ArrayList<Double>>() {}.type
-        val vRes: ArrayList<Double> = gson.fromJson(vResJson, resType) ?: arrayListOf()
-        val sRes: ArrayList<Double> = gson.fromJson(sResJson, resType) ?: arrayListOf()
-        val bRes: ArrayList<Double> = gson.fromJson(bResJson, resType) ?: arrayListOf()
-        val uRes: ArrayList<Double> = gson.fromJson(uResJson, resType) ?: arrayListOf()
-
-        val sumArray = ArrayList<Double>()
-        /*if(vRes!=null && sRes!=null && bRes!=null && uRes!=null) {
-            Log.d(TAG, "RESULTS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n VRES: $vRes \n SRES: $sRes \n bRES: $bRes \n URES: $uRes")
-            for (i in vRes.indices) {
-                val sum = vRes[i] + sRes[i] + bRes[i] + uRes[i]
-                sumArray.add(sum)
-            }
-            val dataEntries: MutableList<DataEntry> = ArrayList()
-            for (i in sumArray.indices) {
-                dataEntries.add(ValueDataEntry("Index $i", sumArray[i]))
-            }
-
-// Add data to the chart
-            val column = barChart.column(dataEntries)
-
-// Customize chart appearance
-            column.labels(true)
-            column.labels().position("inside")  // Set labels inside the bars
-
-// Set chart title and axes titles
-            barChart.title("Sum of Values")
-            barChart.xAxis(0).title("Index")
-            barChart.yAxis(0).title("Sum")
-
-// Display the chart
-            binding.chartContainer.setChart(barChart)
-
-        }*/
     }
 
 
     override fun onResume() {
         super.onResume()
 
-        val sharedPrefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
 
         val vResJson = sharedPrefs.getString("vitalRes", null)
-        if (vResJson != null) {
-            val resType = object : TypeToken<ArrayList<Double>>() {}.type
-            val res = gson.fromJson<ArrayList<Double>>(vResJson, resType)
-            // Now you have your ArrayList<Double> back from the JSON string
-            Log.d(TAG, "VITALS RESULT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! $res")
-        }
         val sResJson = sharedPrefs.getString("symptomsRes", null)
-        if (sResJson != null) {
-            val resType = object : TypeToken<ArrayList<Double>>() {}.type
-            val res = gson.fromJson<ArrayList<Double>>(sResJson, resType)
-            // Now you have your ArrayList<Double> back from the JSON string
-            Log.d(TAG, "SYMPTOMS RESULT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ${res.toString()}")
-        }
         val bResJson = sharedPrefs.getString("bloodReportsRes", null)
-        if (bResJson != null) {
-            val resType = object : TypeToken<ArrayList<Double>>() {}.type
-            val res = gson.fromJson<ArrayList<Double>>(bResJson, resType)
-            // Now you have your ArrayList<Double> back from the JSON string
-            Log.d(TAG, "BLOOD REPORTS RESULT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! $res")
-        }
         val uResJson = sharedPrefs.getString("urinalysisRes", null)
-        if (uResJson != null) {
-            val resType = object : TypeToken<ArrayList<Double>>() {}.type
-            val res = gson.fromJson<ArrayList<Double>>(uResJson, resType)
-            // Now you have your ArrayList<Double> back from the JSON string
-            Log.d(TAG, "URINALYSIS RESULT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! $res")
+
+        val resType = object : TypeToken<ArrayList<Double>>() {}.type
+        val vRes: ArrayList<Double> = gson.fromJson(vResJson, resType) ?: arrayListOf(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+        val sRes: ArrayList<Double> = gson.fromJson(sResJson, resType) ?: arrayListOf(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+        val bRes: ArrayList<Double> = gson.fromJson(bResJson, resType) ?: arrayListOf(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+        val uRes: ArrayList<Double> = gson.fromJson(uResJson, resType) ?: arrayListOf(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+
+        val sumArray = ArrayList<Double>()
+        Log.d(TAG, "RESULTS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n VRES: $vRes \n SRES: $sRes \n bRES: $bRes \n URES: $uRes")
+        for (i in vRes.indices) {
+            val sum = vRes[i] + sRes[i] + bRes[i] + uRes[i]
+            sumArray.add(sum)
         }
+
+        dataEntries.clear()
+        for (i in sumArray.indices) {
+            dataEntries.add(ValueDataEntry("Index $i", sumArray[i]))
+            Log.d(TAG, "${sumArray[i]}")
+        }
+
+        // Add data to the chart
+        barChart.removeAllSeries()
+        barChart.column(dataEntries)
+//        val column = barChart.column(dataEntries)
+
+        Log.d(TAG, "SUM ARRAY: $sumArray \n DATA ENTRIES: $dataEntries")
+
+        // Customize chart appearance
+ //       column.labels(true)
+  //      column.labels().position("inside")  // Set labels inside the bars
+
+        // Display the chart
+        binding.chartContainer.setChart(barChart)
     }
 }

@@ -21,7 +21,14 @@ import com.example.app.utils.symptomsObesity
 class SymptomsInput : AppCompatActivity() {
     private lateinit var binding: ActivitySymptomsInputBinding
     private lateinit var viewModel: SymptomsViewModel
-
+    private var selectedSymptomNames = ArrayList<String>()
+    private var so: Double = 0.0
+    private var scvd: Double = 0.0
+    private var shtn: Double = 0.0
+    private var st: Double = 0.0
+    private var sa: Double = 0.0
+    private var sd: Double = 0.0
+    private lateinit var res: ArrayList<Double>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -43,19 +50,21 @@ class SymptomsInput : AppCompatActivity() {
             val editor = sharedPrefs.edit()
 
             val selectedSymptomsList = adapter.getSelectedSymptoms()
-            val selectedSymptomNames = ArrayList<String>()
+            if (selectedSymptomsList.isEmpty()){
+
+            }
             for (symptom in selectedSymptomsList) {
                 selectedSymptomNames.add(symptom.symptom)
             }
 
-            val so = symptomsObesity(selectedSymptomNames)
-            val shtn = symptomsHTN(selectedSymptomNames)
-            val scvd = symptomsCVD(selectedSymptomNames)
-            val sa = symptomsAnemia(selectedSymptomNames)
-            val sd = symptomsDiabetes(selectedSymptomNames)
-            val st = symptomsThyrodism(selectedSymptomNames)
+            so = symptomsObesity(selectedSymptomNames)
+            shtn = symptomsHTN(selectedSymptomNames)
+            scvd = symptomsCVD(selectedSymptomNames)
+            sa = symptomsAnemia(selectedSymptomNames)
+            sd = symptomsDiabetes(selectedSymptomNames)
+            st = symptomsThyrodism(selectedSymptomNames)
 
-            val res = arrayListOf(so, shtn, sd, st, scvd, sa)
+            res = arrayListOf(so, shtn, sd, st, scvd, sa)
 
             var resJson = gson.toJson(res)
             if(resJson == null) { resJson = "" }
