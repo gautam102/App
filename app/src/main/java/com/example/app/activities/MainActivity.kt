@@ -1,7 +1,6 @@
 package com.example.app.activities
 
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -17,8 +16,6 @@ import com.anychart.AnyChart
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.anychart.charts.Cartesian
-import com.anychart.enums.Anchor
-import com.anychart.enums.Position
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -42,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             apply() // Commit the changes
         }
 
-        barChart = AnyChart.column()
+        barChart = AnyChart.bar()
         barChart.title("Result")
         barChart.xAxis(0).title("Diseases")
         barChart.yAxis(0).title("Probability")
@@ -51,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         barChart.container("container") // Set the container id
         barChart.labels(true) // Enable labels on columns
         barChart.labels().position("inside") // Set label position
+
 
         val startInputActivity = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
@@ -74,9 +72,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, UrinalysisInput::class.java)
             startInputActivity.launch(intent)
         }
-
-        val sharedPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
-
     }
 
 
@@ -103,24 +98,31 @@ class MainActivity : AppCompatActivity() {
             sumArray.add(sum)
         }
 
-        dataEntries.clear()
-        for (i in sumArray.indices) {
-            dataEntries.add(ValueDataEntry("Index $i", sumArray[i]))
-            Log.d(TAG, "${sumArray[i]}")
+        if(sumArray!=arrayListOf(0.0,0.0,0.0,0.0,0.0,0.0)){
+            dataEntries.clear()
+            for (i in sumArray.indices) {
+                dataEntries.add(ValueDataEntry("Index $i", sumArray[i]))
+                Log.d(TAG, "${sumArray[i]}")
+            }
+            // Add data to the chart
+            updateChartData(sumArray)
         }
-
-        // Add data to the chart
-        barChart.removeAllSeries()
-        barChart.column(dataEntries)
-//        val column = barChart.column(dataEntries)
 
         Log.d(TAG, "SUM ARRAY: $sumArray \n DATA ENTRIES: $dataEntries")
 
-        // Customize chart appearance
- //       column.labels(true)
-  //      column.labels().position("inside")  // Set labels inside the bars
+    }
+    private fun updateChartData(sumArray:ArrayList<Double>) {
+        // Clear previous data entries and add new data
+        dataEntries.clear()
+        for (i in sumArray.indices) {
+            dataEntries.add(ValueDataEntry("Index $i", sumArray[i]))
+        }
+        // Remove previous series and add the updated series
+        barChart.removeAllSeries()
+        barChart.data(dataEntries)
 
-        // Display the chart
+        // Refresh the chart
         binding.chartContainer.setChart(barChart)
+        binding.chartContainer.invalidate()
     }
 }
