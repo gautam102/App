@@ -16,6 +16,7 @@ class UrinalysisInput : AppCompatActivity() {
     private var glu: Boolean = false
     private var ket: Boolean = false
     private var bld: Boolean = false
+    private var ud: Double = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -75,7 +76,9 @@ class UrinalysisInput : AppCompatActivity() {
             val gson = Gson()
             val editor = sharedPrefs.edit()
 
-            val ud = urinalysisDiabetes(glu, ket)
+            if(glu!=null || ket!=null) {
+                ud += urinalysisDiabetes(glu, ket)
+            }
 
             val res = arrayListOf(0, 0, 0, 0, 0, ud)
             var resJson = gson.toJson(res)

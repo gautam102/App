@@ -12,6 +12,7 @@ import com.example.app.utils.thyroidObesity
 import com.example.app.utils.lipidCVD
 import com.example.app.utils.lipidObesity
 import com.example.app.utils.cbcAnemia
+import com.example.app.utils.cmpCVD
 import com.example.app.utils.cmpDiabetes
 class BloodReportsInput : AppCompatActivity() {
     private lateinit var binding: ActivityBloodReportsInputBinding
@@ -29,7 +30,7 @@ class BloodReportsInput : AppCompatActivity() {
         // CBC Report Text Watchers
         val layout1 = binding.cbcReport
         addWatcher(layout1.RBC, 1.0, 10.0) //
-        addWatcher(layout1.WBC, 1000.00, 5000.00)
+        addWatcher(layout1.WBC, 1000.00, 50000.00)
         addWatcher(layout1.Hb, 2.0, 20.0) //
         addWatcher(layout1.Hct, 10.0, 70.0) //
         addWatcher(layout1.MCV, 10.0, 300.00)
@@ -101,29 +102,29 @@ class BloodReportsInput : AppCompatActivity() {
             val gson = Gson()
             val editor = sharedPrefs.edit()
 
-            if(lipidValidate(totChl, hdl, ldl, tg) == true) {
-                bro += lipidObesity(totChl!!, hdl!!, ldl!!, tg!!)
-                val lcvd = lipidCVD(totChl, hdl, ldl, tg)
-                brcvd = lcvd
-            }
 
-            val tv = thyroidValidate(tsh, t4, t3)
-            if(tv==1) {
-                bro += thyroidObesity(tsh!!)
-            }else if(tv==2){
-                brt = thyroidThyroidism(tsh!!, t3!!, t4!!)
-                bro += thyroidObesity(tsh!!)
+            if(totChl!=null || hdl!=null || ldl!=null || tg!=null) {
+                bro += lipidObesity(totChl, hdl, ldl, tg)
+                brcvd += lipidCVD(totChl, hdl, ldl, tg)
+            }
+            if(tsh!=null || t3!=null || t4!=null){
+                brt += thyroidThyroidism(tsh, t3, t4)
+                bro += thyroidObesity(tsh)
             }
 
             val sex = sharedPrefs.getString("sex", null)
-            if(cbcValidate(rbc, hb, hct, mcv, sex)){
-                bra = cbcAnemia(rbc!!, hb!!, hct!!, mcv!!, "M")
+            if(rbc!=null || hb!=null || hct!=null || mcv!=null){
+                bra += cbcAnemia(rbc, hb, hct, mcv, sex)
             }
-            if(cmpValidate(glu) == true) {
-                brd = cmpDiabetes(glu!!)
+            if(glu!=null){
+                brd += cmpDiabetes(glu)
+            }
+            if(alt!=null && alp!=null){
+                brcvd += cmpCVD(alt, ast)
             }
 
-            val res = arrayListOf(bro, brcvd, bra, brd, brt, 0)
+
+            val res = arrayListOf(bro, 0, brd, brt, brcvd, bra)
             var resJson = gson.toJson(res)
             if(resJson == null) { resJson = "" }
             editor.putString("bloodReportsRes", resJson)
@@ -132,44 +133,6 @@ class BloodReportsInput : AppCompatActivity() {
             setResult(RESULT_OK, resultIntent)
             finish()
        }
-    }
-    private fun thyroidValidate(tsh:Double?, t4:Double?, t3:Double?): Int{
-
-        return 2
-        //null value handling
-    }
-    private fun lipidValidate(totChl:Double?, hdl:Double?, ldl:Double?, tg:Double?): Boolean{
-        if (totChl != null && hdl != null && ldl != null && tg != null) { //null check
-            if (totChl in 10.0..500.0 && hdl in 10.0..500.0 && ldl in 10.0..180.0
-                && tg in 10.0..500.0) { //range check
-                return true
-            }
-        } else {
-            // Handle null values for lipid parameters
-        }
-        return false
-    }
-    private fun cbcValidate(rbc: Double?, hb: Double?, hct: Double?, mcv: Double?, sex: String?): Boolean{
-        if (rbc != null && hb != null && hct != null && mcv != null) {
-            if (rbc in 1.0..10.0 && hb in 2.0..20.0 && hct in 10.0..70.0
-                && mcv in 10.0..300.0) {
-                return true
-            }
-        } else {
-            // Handle null values for CBC parameters
-        }
-
-        return false
-    }
-    private fun cmpValidate(glu:Double?): Boolean{
-        if (glu != null) {
-            if (glu in 10.0..1000.0) {
-                return true
-            }
-        } else {
-            // Handle null value for CMP parameter
-        }
-        return false
     }
     private fun inputError(){
         Toast.makeText(this, "Invalid input range detected", Toast.LENGTH_SHORT).show()

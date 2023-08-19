@@ -22,7 +22,8 @@ import com.google.gson.Gson
 
 class VitalInput : AppCompatActivity() {
    private lateinit var binding: ActivityVitalInputBinding
-
+    private var bmi: Double = 25.0
+    private var bp: BP = BP(90,120)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -62,20 +63,40 @@ class VitalInput : AppCompatActivity() {
             val age = binding.age.text.toString().toIntOrNull()
             val temp = binding.temperature.text.toString().toDoubleOrNull()
 
-            if ((height == null) || (height < 30.0) || (height > 300.0) ||
-                (weight == null) || (weight < 0.0) || (weight > 500.0) ||
-                (bp1 == null) || (bp1 < 60) || (bp1 > 250) ||
-                (bp2 == null) || (bp2 < 60) || (bp2 > 250) ||
-                (pr == null) || (pr < 30) || (pr > 200) ||
-                (age == null) || (age < 1) || (age > 110) ||
-                (temp == null) || (temp < 30.0) || (temp > 45.0)
-            ) {
-                Toast.makeText(this, "Invalid input range detected", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+
+
+            if(height!=null && weight!=null){
+                bmi = weight / (height * height)
+            }
+            if(bp1!=null && bp2!=null) {
+                bp = BP(bp1, bp2)
             }
 
-            val bmi = weight / (height * height)
-            val bp = BP(bp1, bp2)
+            // input range validation
+            if(height!=null) { if ((height < 30.0) || (height > 300.0)) {
+                    invalidInput()
+                }
+            }
+            if (weight!=null){ if((weight < 0.0) || (weight > 500.0)) {
+                    invalidInput()
+                }
+            }
+            if (bp1!=null && bp2!=null){ if((bp1 < 60) || (bp1 > 250) || (bp2 < 60) || (bp2 > 250)){
+                    invalidInput()
+                }
+            }
+            if(pr!=null){ if((pr < 30) || (pr > 200)){
+                   invalidInput()
+                }
+            }
+            if(age!=null){ if((age < 1) || (age > 110)){
+                    invalidInput()
+                }
+            }
+            if(temp!=null){ if((temp < 30.0) || (temp > 45.0)){
+                invalidInput()
+            }
+            }
 
             val vo: Double = vitalsObesity(bmi, pr)
             val vhtn: Double = vitalsHTN(bmi, bp, temp, pr, age)
@@ -94,5 +115,8 @@ class VitalInput : AppCompatActivity() {
             setResult(RESULT_OK, resultIntent)
             finish()
        }
+    }
+    private fun invalidInput(){
+        Toast.makeText(this, "Invalid input range detected", Toast.LENGTH_SHORT).show()
     }
 }
