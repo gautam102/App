@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var barChart: Cartesian
     private lateinit var sharedPrefs: SharedPreferences
     private val dataEntries: MutableList<DataEntry> = ArrayList()
+    private var sumArray = ArrayList<Double>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         barChart = AnyChart.bar()
-        barChart.title("Result")
         barChart.xAxis(0).title("Diseases")
         barChart.yAxis(0).title("Probability")
         barChart.yScale().minimum(0.0)  // Set the minimum value
@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         barChart.labels(true) // Enable labels on columns
         barChart.labels().position("inside") // Set label position
 
+        binding.chartContainer.setChart(barChart)
 
         val startInputActivity = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
@@ -72,6 +73,18 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, UrinalysisInput::class.java)
             startInputActivity.launch(intent)
         }
+
+        binding.refresh.setOnClickListener{
+            with(sharedPrefs.edit()) {
+                putString("vitalRes", null)
+                putString("symptomsRes", null)
+                putString("bloodReportsRes", null)
+                putString("urinalysisRes", null)
+                apply() // Commit the changes
+            }
+            sumArray = arrayListOf(0.0,0.0,0.0,0.0,0.0,0.0)
+            updateChartData()
+        }
     }
 
 
@@ -91,38 +104,29 @@ class MainActivity : AppCompatActivity() {
         val bRes: ArrayList<Double> = gson.fromJson(bResJson, resType) ?: arrayListOf(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
         val uRes: ArrayList<Double> = gson.fromJson(uResJson, resType) ?: arrayListOf(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 
-        val sumArray = ArrayList<Double>()
         Log.d(TAG, "RESULTS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n VRES: $vRes \n SRES: $sRes \n bRES: $bRes \n URES: $uRes")
+        sumArray.clear()
         for (i in vRes.indices) {
             val sum = vRes[i] + sRes[i] + bRes[i] + uRes[i]
             sumArray.add(sum)
         }
 
-        if(sumArray!=arrayListOf(0.0,0.0,0.0,0.0,0.0,0.0)){
-            dataEntries.clear()
-            for (i in sumArray.indices) {
-                dataEntries.add(ValueDataEntry("Index $i", sumArray[i]))
-                Log.d(TAG, "${sumArray[i]}")
-            }
-            // Add data to the chart
-            updateChartData(sumArray)
-        }
+        // Add data to the chart
+        updateChartData()
 
         Log.d(TAG, "SUM ARRAY: $sumArray \n DATA ENTRIES: $dataEntries")
 
     }
-    private fun updateChartData(sumArray:ArrayList<Double>) {
+    private fun updateChartData() {
         // Clear previous data entries and add new data
         dataEntries.clear()
+        val diseases = arrayListOf("Obesity", "Hypertension", "Diabetes", "Hyperthyroidism", "CVD", "Anemia")
         for (i in sumArray.indices) {
-            dataEntries.add(ValueDataEntry("Index $i", sumArray[i]))
+            dataEntries.add(ValueDataEntry(diseases[i], sumArray[i]))
         }
+
         // Remove previous series and add the updated series
         barChart.removeAllSeries()
         barChart.data(dataEntries)
-
-        // Refresh the chart
-        binding.chartContainer.setChart(barChart)
-        binding.chartContainer.invalidate()
     }
 }

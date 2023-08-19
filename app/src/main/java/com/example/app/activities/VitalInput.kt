@@ -119,7 +119,7 @@ class VitalInput : AppCompatActivity() {
             vcvd = vitalsCVD(bmi, temp, pr)
             vd = vitalsDiabetes(bmi, pr)
 
-            res = arrayListOf(vo, vhtn, vt, va, vcvd, vd)
+            res = arrayListOf(vo, vhtn, vd, vt, vcvd, va)
 
             var resJson = gson.toJson(res)
             if (resJson == null) {

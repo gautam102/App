@@ -81,7 +81,7 @@ class UrinalysisInput : AppCompatActivity() {
             }
 
 
-            val res = arrayListOf(0, 0, 0, 0, 0, ud)
+            val res = arrayListOf(0, 0, ud, 0, 0, 0)
             var resJson = gson.toJson(res)
 
             editor.putString("urinalysisRes", resJson)
