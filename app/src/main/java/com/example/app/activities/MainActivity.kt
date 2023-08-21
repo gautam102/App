@@ -52,10 +52,8 @@ class MainActivity : AppCompatActivity() {
         barChart.container("container") // Set the container id
         barChart.labels(true) // Enable labels on columns
         barChart.labels().position("inside") // Set label position
-
+        barChart.credits().enabled(false);
         barChart.background().fill("#202123")
-
-
 
         binding.chartContainer.setChart(barChart)
 
