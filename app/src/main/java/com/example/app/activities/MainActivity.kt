@@ -3,10 +3,13 @@ package com.example.app.activities
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import com.example.app.databinding.ActivityMainBinding
 import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
@@ -16,6 +19,7 @@ import com.anychart.AnyChart
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.anychart.charts.Cartesian
+import com.anychart.core.cartesian.series.Bar
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -48,8 +52,10 @@ class MainActivity : AppCompatActivity() {
         barChart.container("container") // Set the container id
         barChart.labels(true) // Enable labels on columns
         barChart.labels().position("inside") // Set label position
-        barChart.background().fill("000000")
-        binding.chartContainer.setBackgroundColor("")
+
+        barChart.background().fill("#202123")
+
+
 
         binding.chartContainer.setChart(barChart)
 
@@ -129,7 +135,11 @@ class MainActivity : AppCompatActivity() {
 
         // Remove previous series and add the updated series
         barChart.removeAllSeries()
-        barChart.data(dataEntries)
 
+        val barSeries = barChart.bar(dataEntries)
+        barSeries.fill("#B08FD8")
+        barSeries.stroke("#B08FD8")
+
+        binding.chartContainer.invalidate()
     }
 }

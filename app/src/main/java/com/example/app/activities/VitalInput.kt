@@ -73,7 +73,8 @@ class VitalInput : AppCompatActivity() {
 
 
             if (height != null && weight != null) {
-                bmi = weight / (height * height)
+                val meters = height/100
+                bmi = weight / (meters * meters)
             }
             if (bp1 != null && bp2 != null) {
                 bp = BP(bp1, bp2)

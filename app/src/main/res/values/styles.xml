@@ -3,6 +3,7 @@
    <style name="decimalET">
        <item name="android:inputType">number|numberDecimal</item>
        <item name="android:maxLines">1</item>
+       <item name="android:textSize">15sp</item>
    </style>
     <style name="fieldTextViewRL">
         <item name="android:layout_alignParentStart">true</item>
@@ -18,7 +19,9 @@
     </style>
     <style name="textInputRL">
         <item name="android:layout_centerInParent">true</item>
-        <item name="android:layout_width">170dp</item>
+        <item name="android:layout_width">120dp</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="hintEnabled">false</item>
+        <item name="android:layout_marginBottom">10dp</item>
     </style>
 </resources>

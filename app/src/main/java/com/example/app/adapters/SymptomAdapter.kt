@@ -71,9 +71,8 @@ class SymptomAdapter(
                 } else {
                     selectedSymptomsArray.remove(it)
                 }
-
                 val checkboxStatus = "Checkbox is checked: $isChecked, Symptom is checked: ${it.checked}"
-                Toast.makeText(holder.itemView.context, checkboxStatus, Toast.LENGTH_SHORT).show()
+                Log.d(TAG, "$checkboxStatus")
             }
         }
     }
